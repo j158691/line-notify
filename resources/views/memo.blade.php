@@ -2,20 +2,26 @@
 <html>
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>忘記了嗎</title>
+    <title>提醒寶貝</title>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ asset('image/icon.png') }}" type="image/x-icon">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 <div class="container">
-    <h1>備忘錄</h1>
+    <img class="bondee" src="{{ asset('image/bondee.png') }}">
+    <h1>Memo</h1>
+    <span>寶貝會提前一小時跟你講</span>
     <div class="form">
         @csrf
-        <label for="event">什麼事</label>
+        <label for="event">事件</label>
         <input type="text" id="event" name="event" required>
         <label for="dateTime">時間</label>
         <input type="datetime-local" id="dateTime" name="dateTime" required>
         <button type="submit" id="store">儲存</button>
+        <div class="logout">
+            <button type="submit" id="logout" style="width: 68px;">登出</button>
+        </div>
     </div>
 </div>
 
@@ -23,6 +29,7 @@
     const eventElement = document.getElementById('event');
     const dateTimeElement = document.getElementById('dateTime');
     const storeElement = document.getElementById('store');
+    const logoutElement = document.getElementById('logout');
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     storeElement.addEventListener("click", function () {
@@ -36,16 +43,40 @@
 
         console.table(params);
 
-        postData('http://localhost:8000/memo', params)
+        postData('{{ env('APP_URL') }}/memo', params)
             .then(data => {
                 console.log(data);
                 if (data.status === 200) {
-                    swal("新增成功", "", "success");
+                    swal("寶貝記得嚕", "", "success");
                 } else {
-                    swal("失敗", "", "error");
+                    swal("寶貝做不到qq", "", "error");
                 }
 
                 storeElement.disabled = false;
+            })
+            .catch(error => {storeElement.disabled = false;})
+    });
+
+    logoutElement.addEventListener("click", function () {
+        logoutElement.disabled = true;
+
+        params = {
+            _token: token
+        };
+
+        console.table(params);
+
+        postData('{{ env('APP_URL') }}/logout', params)
+            .then(data => {
+                console.log(data);
+                if (data.status === 200) {
+                    // swal("", "", "success");
+                    window.location.href = '{{ env('APP_URL') }}/login';
+                } else {
+                    swal("寶貝做不到qq", "", "error");
+                }
+
+                logoutElement.disabled = false;
             })
             .catch(error => {storeElement.disabled = false;})
     });

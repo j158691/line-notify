@@ -38,7 +38,7 @@ class LineNotifyService
         $options = [
             'response_type' => 'code',
             'client_id'     => $this->notifyClientId,
-            'redirect_uri'  => 'http://localhost:8000/token',
+            'redirect_uri'  => env('APP_URL', '').'/token',
             'scope'         => 'notify',
             'state'         => Str::random(12),
             'code'          => Str::random(12),
@@ -61,7 +61,7 @@ class LineNotifyService
             'form_params' => [
                 'grant_type'    => 'authorization_code',
                 'code'          => $code,
-                'redirect_uri'  => 'http://localhost:8000/token',
+                'redirect_uri'  => env('APP_URL', '').'/token',
                 'client_id'     => $this->notifyClientId,
                 'client_secret' => $this->notifyClientSecret,
             ],
@@ -116,8 +116,8 @@ class LineNotifyService
             ],
             'form_params' => [
                 'message' => $message,
-                'imageThumbnail' => 'https://64.media.tumblr.com/002d224f886518f5b66d583fe0284776/488555a08356c94e-e4/s1280x1920/a2f9b4f3f22e1b5db35b437d19dd81f43be05687.jpg',
-                'imageFullsize' => 'https://64.media.tumblr.com/002d224f886518f5b66d583fe0284776/488555a08356c94e-e4/s1280x1920/a2f9b4f3f22e1b5db35b437d19dd81f43be05687.jpg'
+                'imageThumbnail' => 'https://upload.cc/i1/2023/03/15/DH8e5V.png',
+                'imageFullsize' => 'https://upload.cc/i1/2023/03/15/DH8e5V.png'
                 ],
             'verify'      => $this->sslVerify,
         ];

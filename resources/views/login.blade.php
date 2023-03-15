@@ -2,22 +2,24 @@
 <html>
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Login Page</title>
+    <title>登入寶貝</title>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ asset('image/icon.png') }}" type="image/x-icon">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 <div class="container">
+    <img class="bondee" src="{{ asset('image/bondee.png') }}">
     <h1>Login</h1>
     <div class="form">
         @csrf
-        <label for="account">Account</label>
+        <label for="account">Username</label>
         <input type="text" id="account" name="account" required>
         <label for="password">Password</label>
         <input type="password" id="password" name="password" required>
         <button type="submit" id="login">Login</button>
         <br>
-        <button type="button" id="register" onclick="window.location.href='http://localhost:8000/register'">Register</button>
+        <button type="button" id="register" onclick="window.location.href='{{ env('APP_URL') }}/register'">Register</button>
 
     </div>
 </div>
@@ -37,15 +39,15 @@
 
         console.table(params);
 
-        postData('http://localhost:8000/login', params)
+        postData('{{ env('APP_URL') }}/login', params)
             .then(data => {
                 console.log(data);
                 if (data.status === 200) {
-                    swal("登入", "", "success").then(value => {
-                        window.location.href = 'http://localhost:8000/memo';
+                    swal("寶貝早", "", "success").then(value => {
+                        window.location.href = '{{ env('APP_URL') }}/memo';
                     });
                 } else {
-                    swal("錯誤", "", "error");
+                    swal("寶貝做不到qq", "", "error");
                 }
             })
             .catch(error => console.error(error))

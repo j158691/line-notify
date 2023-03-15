@@ -23,7 +23,7 @@ Route::get('/', function () {
 #region view
 Route::get('/register', function () {return view('register');});
 Route::get('/login', function () {return view('login');});
-Route::get('/memo', function () {return view('memo');});
+Route::get('/memo', function () {return view('memo');})->middleware('auth');
 #endregion
 
 #region register
@@ -36,7 +36,7 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 #endregion
 
 #region memo
-Route::post('/memo', [MemoController::class, 'postMemo']);
+Route::post('/memo', [MemoController::class, 'postMemo'])->middleware('auth');
 #endregion
 
 #region lineNotify

@@ -70,7 +70,7 @@ class LineNotifyController extends Controller
             $resultUser->line_notify = $access_token;
             $resultUser->save();
 
-            return redirect('http://localhost:8000/memo');
+            return redirect(env('APP_URL', '').'/memo');
         } catch (Exception $exception) {
             dd($exception->getMessage());
         }

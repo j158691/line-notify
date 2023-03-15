@@ -7,6 +7,7 @@ use App\Services\MemoService;
 use App\Services\UserService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Log;
 
 class CronNotifyMemo extends Command
 {
@@ -67,7 +68,8 @@ class CronNotifyMemo extends Command
         $notify_time_start = Carbon::now()->addHour()->startOfMinute()->toDateTimeString();
         $notify_time_end = Carbon::now()->addHour()->endOfMinute()->toDateTimeString();
 
-        $resultMemos = $this->memoService->getNotifyMemos('2023-03-13 00:00:00', '2023-03-14 19:19:59');
+        // $resultMemos = $this->memoService->getNotifyMemos('2023-03-13 00:00:00', '2023-03-14 19:19:59');
+        $resultMemos = $this->memoService->getNotifyMemos($notify_time_start, $notify_time_end);
         $user_ids = $resultMemos->pluck('user_id')->toArray();
 
         $resultUsers = $this->userService->findUsers($user_ids)->keyBy('id');
@@ -81,5 +83,7 @@ class CronNotifyMemo extends Command
 
             $this->lineNotifyService->postNotify($event, $line_notify);
         });
+
+        Log::info('發送完畢'.Carbon::now()->toDateTimeString());
     }
 }

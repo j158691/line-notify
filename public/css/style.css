@@ -1,3 +1,7 @@
+* {
+    font-family: "Noto Sans CJK TC", "Microsoft JhengHei", PingFang, STHeiti, sans-serif, serif;
+}
+
 .container {
     max-width: 500px;
     /*margin: 0 auto;*/
@@ -15,8 +19,9 @@
 
 h1 {
     text-align: center;
-    margin-bottom: 30px;
-    color: #333;
+    margin-bottom: 8px;
+    /*color: #333;*/
+    color: #d972c2;
 }
 
 .form {
@@ -55,4 +60,33 @@ button
 
 button[type="submit"]:hover {
     background-color: #555;
+}
+
+.bondee {
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    height: 200px;
+}
+
+.logout {
+    /*style="text-align: right; position: absolute; top: 15px; right: 15px"*/
+    /*text-align: right;*/
+    position: absolute;
+    top: 20px;
+    right: 20px;
+}
+
+span {
+    color: #d731c9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+.back {
+    position: absolute;
+    top: 20px;
+    left: 20px;
 }

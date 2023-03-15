@@ -2,17 +2,19 @@
 <html>
 <head>
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <title>Register Page</title>
+    <title>註冊寶貝</title>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
+    <link rel="icon" href="{{ asset('image/icon.png') }}" type="image/x-icon">
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 <div class="container">
-    <button type="button" id="back" onclick="history.back()">Back</button>
+    <button class="back" type="button" id="back" onclick="history.back()">Back</button>
+    <img class="bondee" src="{{ asset('image/bondee.png') }}">
     <h1>Register</h1>
     <div class="form">
         @csrf
-        <label for="account">Account</label>
+        <label for="account">Username</label>
         <input type="text" id="account" name="account" required>
         <label for="password">Password</label>
         <input type="password" id="password" name="password" required>
@@ -37,15 +39,15 @@
 
         console.table(params);
 
-        postData('http://localhost:8000/register', params)
+        postData('{{ env('APP_URL') }}/register', params)
             .then(data => {
                 console.log(data);
                 if (data.status === 200) {
-                //     swal("登入", "", "success").then(value => {
-                        window.location.href = 'http://localhost:8000/authorize';
+                //     swal("", "", "success").then(value => {
+                        window.location.href = '{{ env('APP_URL') }}/authorize';
                 //     });
                 } else {
-                    swal("錯誤", data.message.account[0], "error");
+                    swal("寶貝做不到qq", data.message.account[0], "error");
                     registerElement.disabled = false;
                 }
             })
