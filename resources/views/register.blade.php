@@ -18,6 +18,8 @@
         <input type="text" id="account" name="account" required>
         <label for="password">Password</label>
         <input type="password" id="password" name="password" required>
+        <label for="confirm-password">Confirm Password</label>
+        <input type="password" id="confirm-password" name="confirm-password" required>
         <button type="submit" id="register">Register</button>
     </div>
     <div class="dog"></div>
@@ -27,6 +29,7 @@
     const accountElement = document.getElementById('account');
     const passwordElement = document.getElementById('password');
     const registerElement = document.getElementById('register');
+    const confirmPasswordElement = document.getElementById('confirm-password');
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
     registerElement.addEventListener("click", function () {
@@ -34,6 +37,12 @@
 
         if (!accountElement.value || !passwordElement.value) {
             swal("為什麼你就是不愛填欄位", '壞ˋˊ', "warning");
+            registerElement.disabled = false;
+            return;
+        }
+
+        if (confirmPasswordElement.value !== passwordElement.value) {
+            swal("密碼這樣也能填錯==", '好爛', "warning");
             registerElement.disabled = false;
             return;
         }

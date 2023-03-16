@@ -24,6 +24,8 @@
         </div>
     </div>
     <div class="dog"></div>
+    <div class="meliodas"></div>
+    <div class="kon"></div>
 </div>
 
 <script>

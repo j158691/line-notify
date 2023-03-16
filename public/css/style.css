@@ -101,6 +101,29 @@ span {
     /*top: 21%;*/
     /*left: 28%;*/
     top: 120px;
-    left: 165px;
+    right: 165px;
     animation: chase 3s infinite linear;
 }
+
+.meliodas {
+    width: 30%;
+    height: 30%;
+    background-image: url("../image/meliodas.png");
+    background-size: cover;
+    position: absolute;
+    top: 80px;
+    left: 30px;
+    animation: chase 3s infinite linear;
+}
+
+.kon {
+    width: 20%;
+    height: 25%;
+    background-image: url("../image/kon.png");
+    background-size: cover;
+    position: absolute;
+    top: 110px;
+    right: 65px;
+    animation: chase 3s infinite linear;
+}
+
