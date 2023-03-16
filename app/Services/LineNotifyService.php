@@ -116,8 +116,8 @@ class LineNotifyService
             ],
             'form_params' => [
                 'message' => $message,
-                'imageThumbnail' => 'https://upload.cc/i1/2023/03/15/DH8e5V.png',
-                'imageFullsize' => 'https://upload.cc/i1/2023/03/15/DH8e5V.png'
+                'imageThumbnail' => 'https://i.imgur.com/xYw42J3.jpg',
+                'imageFullsize' => 'https://i.imgur.com/xYw42J3.jpg'
                 ],
             'verify'      => $this->sslVerify,
         ];
