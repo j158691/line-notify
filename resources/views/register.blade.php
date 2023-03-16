@@ -31,6 +31,12 @@
     registerElement.addEventListener("click", function () {
         registerElement.disabled = true;
 
+        if (!accountElement.value || !passwordElement.value) {
+            swal("為什麼你就是不愛填欄位", '壞ˋˊ', "warning");
+            registerElement.disabled = false;
+            return;
+        }
+
         params = {
             account: accountElement.value,
             password: passwordElement.value,

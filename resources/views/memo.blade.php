@@ -35,6 +35,12 @@
     storeElement.addEventListener("click", function () {
         storeElement.disabled = true;
 
+        if (!dateTimeElement.value || !eventElement.value) {
+            swal("為什麼你就是不愛填欄位", '壞ˋˊ', "warning");
+            registerElement.disabled = false;
+            return;
+        }
+
         params = {
             notify_time: dateTimeElement.value,
             event: eventElement.value,
