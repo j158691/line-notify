@@ -20,6 +20,7 @@
         <input type="password" id="password" name="password" required>
         <button type="submit" id="register">Register</button>
     </div>
+    <div class="dog"></div>
 </div>
 
 <script>

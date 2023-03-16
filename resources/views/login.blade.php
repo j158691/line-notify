@@ -20,8 +20,8 @@
         <button type="submit" id="login">Login</button>
         <br>
         <button type="button" id="register" onclick="window.location.href='{{ env('APP_URL') }}/register'">Register</button>
-
     </div>
+    <div class="dog"></div>
 </div>
 
 <script>

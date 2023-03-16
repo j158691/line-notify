@@ -3,7 +3,7 @@
 }
 
 .container {
-    max-width: 500px;
+    max-width: 500%;
     /*margin: 0 auto;*/
     position: absolute;
     top: 40%;
@@ -89,4 +89,18 @@ span {
     position: absolute;
     top: 20px;
     left: 20px;
+}
+
+.dog {
+    width: 20%;
+    height: 25%;
+    background-image: url("../image/chiwawa.png");
+    background-size: cover;
+    /*border-radius: 50%;*/
+    position: absolute;
+    /*top: 21%;*/
+    /*left: 28%;*/
+    top: 120px;
+    left: 165px;
+    animation: chase 3s infinite linear;
 }
