@@ -12,7 +12,7 @@
     padding: 50px;
     background-color: #f2f2f2;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
     width: 500px;
     height: auto;
 }
@@ -102,7 +102,6 @@ span {
     /*left: 28%;*/
     top: 120px;
     right: 165px;
-    animation: chase 3s infinite linear;
 }
 
 .meliodas {
@@ -112,8 +111,10 @@ span {
     background-size: cover;
     position: absolute;
     top: 80px;
-    left: 30px;
-    animation: chase 3s infinite linear;
+    left: 18px;
+    /*border: 0 rgba(236, 140, 234, 0.1);*/
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(217, 114, 194, 0.4);
 }
 
 .kon {
@@ -122,8 +123,30 @@ span {
     background-image: url("../image/kon.png");
     background-size: cover;
     position: absolute;
+    /*border-radius: 50%;*/
+    border-radius: 100px 100px 60px 60px;
     top: 110px;
-    right: 65px;
-    animation: chase 3s infinite linear;
+    right: 45px;
 }
+
+.kon:hover, .kon:active {
+    width: 23%;
+    height: 28%;
+    /*width: 40%;*/
+    /*height: 50%;*/
+    background-image: url("../image/fox.png");
+    background-size: cover;
+    border-radius: 50px 50px 20px 20px;
+    position: absolute;
+    /*top: 110px;*/
+    /*right: 65px;*/
+    /*background-color: #ffbd94;*/
+
+    /* 添加視差滾動效果 */
+    transform: translate3d(0, -20px, 0);
+    /* 添加特效 */
+    filter: brightness(115%) saturate(120%) grayscale(13%) opacity(0.96);
+}
+
+
 
