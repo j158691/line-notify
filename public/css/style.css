@@ -12,7 +12,7 @@
     padding: 50px;
     background-color: #f2f2f2;
     border-radius: 10px;
-    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     width: 500px;
     height: auto;
 }
@@ -77,7 +77,8 @@ button[type="submit"]:hover {
     right: 20px;
 }
 
-span {
+span,
+strong {
     color: #d731c9;
     display: flex;
     justify-content: center;
@@ -114,7 +115,7 @@ span {
     left: 18px;
     /*border: 0 rgba(236, 140, 234, 0.1);*/
     border-radius: 10px;
-    box-shadow: 0 0 20px rgba(217, 114, 194, 0.4);
+    box-shadow: 0 0 20px rgba(145, 94, 217, 0.4);
 }
 
 .kon {
@@ -148,5 +149,31 @@ span {
     filter: brightness(115%) saturate(120%) grayscale(13%) opacity(0.96);
 }
 
+.neon {
+    font-weight: bolder;
+    color: #f180a9;
+    text-shadow:
+        0 0 7px #fff,
+        0 0 10px #fff,
+        0 0 21px #fff;
+    animation: pulsate2 1.5s infinite alternate;
+}
 
+@keyframes pulsate2 {
+    0% {
+        text-shadow:
+            0 0 2px #fff,
+            0 0 4px #fff,
+            0 0 6px #ffffff,
+            0 0 10px #ed82a2;
+    }
+
+    100% {
+        text-shadow:
+            0 0 4px #ffffff,
+            0 0 11px #ffa788,
+            0 0 19px #ffede5,
+            0 0 20px #ed8186;
+    }
+}
 

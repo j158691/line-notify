@@ -4,10 +4,20 @@ namespace App\Services;
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\GuzzleException;
+use Illuminate\Support\Arr;
 use Illuminate\Support\Str;
 
 class LineNotifyService
 {
+    const dogImageEnum = [
+        '/image/shiba.png',
+        '/image/pug.jpg',
+        '/image/yorkshire.png',
+        '/image/sausage.png',
+        '/image/maltese.png',
+        '/image/grey_dog.png',
+    ];
+
     /**
      * @var Client
      */
@@ -107,6 +117,9 @@ class LineNotifyService
      */
     public function postNotify($message, $accessToken)
     {
+        $dog_images = self::dogImageEnum;
+        $dog_image = Arr::get($dog_images, mt_rand(0, 5), '');
+
         $method  = 'POST';
         $uri     = 'https://notify-api.line.me/api/notify';
         $options = [
@@ -115,10 +128,10 @@ class LineNotifyService
                 'Authorization' => 'Bearer '.$accessToken,
             ],
             'form_params' => [
-                'message' => $message,
-                'imageThumbnail' => 'https://i.imgur.com/xYw42J3.jpg',
-                'imageFullsize' => 'https://i.imgur.com/xYw42J3.jpg'
-                ],
+                'message'        => $message,
+                'imageThumbnail' => asset($dog_image),
+                'imageFullsize'  => asset($dog_image),
+            ],
             'verify'      => $this->sslVerify,
         ];
 

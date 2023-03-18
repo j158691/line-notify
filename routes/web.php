@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CommonController;
 use App\Http\Controllers\LineNotifyController;
 use App\Http\Controllers\MemoController;
 use App\Http\Controllers\RegisterController;
@@ -37,6 +38,10 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 #region memo
 Route::post('/memo', [MemoController::class, 'postMemo'])->middleware('auth');
+#endregion
+
+#region common
+Route::get('/server-time', [CommonController::class, 'getServerTime']);
 #endregion
 
 #region lineNotify

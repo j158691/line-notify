@@ -76,7 +76,7 @@ class CronNotifyMemo extends Command
 
         $resultMemos->each(function ($memo) use ($resultUsers) {
             $user_id = $memo->user_id;
-            $event = $memo->event;
+            $event = "\n".$memo->event;
 
             $user = $resultUsers->get($user_id);
             $line_notify = $user->line_notify;

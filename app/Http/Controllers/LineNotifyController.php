@@ -94,8 +94,8 @@ class LineNotifyController extends Controller
     {
         try {
 
-            $message = '我就跟你說ˋˊ';
-            $line_notify = 'ENPX6nRScDLiYZ08vIXZRILA5uqUZH5Dm70G0QRDwZ6';
+            $message = "\n我就跟你說ˋˊ";
+            $line_notify = 'nNhmxibQH48wpLRGee98NldH5XXzwwedjKzkSnN8isj';
             $this->lineNotifyService->postNotify($message, $line_notify);
         } catch (Exception $exception) {
             dd($exception->getMessage());
