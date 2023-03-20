@@ -56,4 +56,36 @@ class MemoService
             ->where('notify_time', '<=', $notifyTimeEnd)
             ->get();
     }
+
+    /**
+     * 取得使用者的紀錄
+     *
+     * @param $userId
+     * @param $notifyTime
+     * @return Memo[]|Builder[]|Collection
+     */
+    public function getMemosForRecord($userId, $notifyTime)
+    {
+        return $this->memo
+            ->newModelQuery()
+            ->where('user_id', $userId)
+            ->where('notify_time', '>=', $notifyTime)
+            ->get();
+    }
+
+    /**
+     * 取得使用者指定單筆紀錄
+     *
+     * @param $memoId
+     * @param $userId
+     * @return Memo|Builder|Model|null|object
+     */
+    public function getMemoForUser($memoId, $userId)
+    {
+        return $this->memo
+            ->newModelQuery()
+            ->where('id', $memoId)
+            ->where('user_id', $userId)
+            ->first();
+    }
 }

@@ -58,7 +58,7 @@ button
     cursor: pointer;
 }
 
-button[type="submit"]:hover {
+button[type="submit"]:hover, button:hover {
     background-color: #555;
 }
 
@@ -127,7 +127,7 @@ strong {
     /*border-radius: 50%;*/
     border-radius: 100px 100px 60px 60px;
     top: 110px;
-    right: 45px;
+    right: 38px;
 }
 
 .kon:hover, .kon:active {
@@ -177,3 +177,52 @@ strong {
     }
 }
 
+.memos {
+    max-width: 500px;
+    width: 500px;
+    height: 300px;
+
+    position: relative;
+    top: 50%;
+    transform: translateY(5%);
+    /*left: 10%;*/
+    /*bottom: 50%;*/
+    /*transform: translate(-50%, -50%);*/
+    /*padding: 5px;*/
+    background-color: #f2f2f2;
+    border-radius: 10px;
+    box-shadow: 0 4px 5px rgba(0, 0, 0, 0.2);
+
+    overflow-y: auto;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    /*margin-top: 10px;*/
+}
+
+th,
+td {
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f2d3e0;
+}
+
+tbody tr:nth-child(even) {
+    background-color: #e7e7e7;
+}
+
+/* 自定義滾動條的樣式 */
+::-webkit-scrollbar {
+    width: 6px; /* 設置滾動條的寬度 */
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #e67a81; /* 設置滾動條的顏色 */
+    border-radius: 5px; /* 設置滾動條的圓角半徑 */
+}

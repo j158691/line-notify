@@ -38,6 +38,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 
 #region memo
 Route::post('/memo', [MemoController::class, 'postMemo'])->middleware('auth');
+Route::get('/memos', [MemoController::class, 'getMemos'])->middleware('auth');
+Route::delete('/memo', [MemoController::class, 'deleteMemo'])->middleware('auth');
 #endregion
 
 #region common
