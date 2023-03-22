@@ -2,9 +2,14 @@
     font-family: "Noto Sans CJK TC", "Microsoft JhengHei", PingFang, STHeiti, sans-serif, serif;
 }
 
+body {
+    background-color: #d5b5c133;
+}
+
 .container {
     max-width: 500%;
     /*margin: 0 auto;*/
+    margin-top: 30px;
     position: absolute;
     top: 40%;
     left: 50%;
@@ -103,6 +108,19 @@ strong {
     /*left: 28%;*/
     top: 120px;
     right: 165px;
+}
+
+.dog:hover {
+    animation: rotate .13s linear infinite;
+}
+
+@keyframes rotate {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
 .meliodas {
@@ -225,4 +243,57 @@ tbody tr:nth-child(even) {
 ::-webkit-scrollbar-thumb {
     background-color: #e67a81; /* 設置滾動條的顏色 */
     border-radius: 5px; /* 設置滾動條的圓角半徑 */
+}
+
+/*塞爸*/
+.sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    width: 180px;
+    background-color: #f2f2f2;
+    padding: 20px;
+    /*border-radius: 10px;*/
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.12);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    /*align-items: center;*/
+    /*height: 100vh;*/
+}
+
+.sidebar ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.sidebar li {
+    /*margin-bottom: 10px;*/
+    background-image: url("https://cdn-icons-png.flaticon.com/512/7357/7357214.png");
+    background-size: 30px 30px; /* 調整圖片大小 */
+    background-repeat: no-repeat;
+    background-position: left; /* 調整圖片位置 */
+    padding-left: 25px; /* 添加左側間距以防止文本與圖片重疊 */
+}
+
+.sidebar a {
+    display: block;
+    padding: 10px;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+    text-decoration: none;
+    color: #333;
+    font-weight: bold;
+    font-size: 16px;
+    margin-left: 8px; /* 右移10px */
+}
+
+.sidebar a:hover {
+    background-color: #ddd;
+}
+
+.sidebar .expand {
+    flex: 1;
 }

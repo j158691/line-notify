@@ -8,6 +8,8 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
+@include('side_bar')
+@yield('sidebar')
 <div class="container">
     <img class="bondee" src="{{ asset('image/bondee.png') }}">
     <h1>Memo</h1>

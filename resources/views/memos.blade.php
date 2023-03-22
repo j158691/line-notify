@@ -8,6 +8,8 @@
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
+@include('side_bar')
+@yield('sidebar')
 <div class="container">
     <img class="bondee" src="{{ asset('image/bondee.png') }}">
     <h1>Memos</h1>
@@ -22,13 +24,13 @@
             </thead>
             <tbody>
             @foreach ($memos as $memo)
-            <tr id="delete-{{ $memo['id'] }}">
-                <td>{{ $memo['event'] }}</td>
-                <td>{{ $memo['notify_time'] }}</td>
-                <td>
-                    <button type="button" class="delete-btn" value="{{ $memo['id'] }}">刪除</button>
-                </td>
-            </tr>
+                <tr id="delete-{{ $memo['id'] }}">
+                    <td>{{ $memo['event'] }}</td>
+                    <td>{{ $memo['notify_time'] }}</td>
+                    <td>
+                        <button type="button" class="delete-btn" value="{{ $memo['id'] }}">刪除</button>
+                    </td>
+                </tr>
             @endforeach
             </tbody>
         </table>
