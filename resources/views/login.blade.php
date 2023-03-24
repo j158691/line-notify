@@ -5,6 +5,7 @@
     <title>登入寶貝</title>
     <link href="{{ asset('css/style.css') }}" rel="stylesheet">
     <link rel="icon" href="{{ asset('image/icon.png') }}" type="image/x-icon">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"/>
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
@@ -16,7 +17,10 @@
         <label for="account">Username</label>
         <input type="text" id="account" name="account" required>
         <label for="password">Password</label>
-        <input type="password" id="password" name="password" required>
+        <div class="password-container">
+            <input type="password" id="password" name="password" required>
+            <i id="eye" class="fas fa-eye" onclick="showPassword()"></i>
+        </div>
         <button type="submit" id="login">Login</button>
         <br>
         <button type="button" id="register" onclick="window.location.href='{{ env('APP_URL') }}/register'">Register</button>
@@ -69,6 +73,19 @@
             referrer: 'no-referrer', // *client, no-referrer
         })
             .then(response => response.json()) // 輸出成 json
+    };
+
+    function showPassword() {
+        let eye = document.getElementById("eye");
+        let passwordInput = document.getElementById("password");
+
+        if (passwordInput.type === "password") {
+            passwordInput.type = "text";
+            eye.className = "fas fa-eye-slash";
+        } else {
+            passwordInput.type = "password";
+            eye.className = "fas fa-eye";
+        }
     }
 </script>
 </body>

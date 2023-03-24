@@ -44,6 +44,7 @@ input[type="text"],
 input[type="password"],
 input[type="datetime-local"]
 {
+    width: 96%;
     padding: 10px;
     margin-bottom: 20px;
     border-radius: 5px;
@@ -296,4 +297,18 @@ tbody tr:nth-child(even) {
 
 .sidebar .expand {
     flex: 1;
+}
+/*end 塞爸/*/
+
+.password-container {
+    position: relative;
+    display: inline-block;
+}
+
+#eye {
+    position: absolute;
+    top: 20%;
+    /*transform: translateY(-50%);*/
+    right: 10px;
+    cursor: pointer;
 }
