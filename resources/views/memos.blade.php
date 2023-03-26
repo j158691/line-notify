@@ -39,6 +39,7 @@
     <div class="meliodas"></div>
     <div class="kon"></div>
 </div>
+<div class="alien"></div>
 
 <script>
     const deleteButtons = document.querySelectorAll('.delete-btn');

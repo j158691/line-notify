@@ -29,6 +29,7 @@
     <div class="meliodas"></div>
     <div class="kon"></div>
 </div>
+<div class="alien"></div>
 
 <script>
     const eventElement = document.getElementById('event');

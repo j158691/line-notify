@@ -27,6 +27,7 @@
     </div>
     <div class="dog"></div>
 </div>
+<div class="alien"></div>
 
 <script>
     const accountElement = document.getElementById('account');
