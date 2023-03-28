@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Services\MemoService;
+use App\Services\RegularEventService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -14,17 +15,24 @@ class MemoController extends Controller
      * @var MemoService
      */
     protected $memoService;
+    /**
+     * @var RegularEventService
+     */
+    protected $regularEventService;
 
     /**
      * MemoController constructor.
      *
      * @param  MemoService  $memoService
+     * @param  RegularEventService  $regularEventService
      */
     public function __construct(
-        MemoService $memoService
+        MemoService $memoService,
+        RegularEventService $regularEventService
     )
     {
         $this->memoService = $memoService;
+        $this->regularEventService = $regularEventService;
     }
 
     public function postMemo(Request $request)
@@ -111,6 +119,63 @@ class MemoController extends Controller
 
             // 刪除
             $resultMemo->delete();
+
+            $http_code = 200;
+            $message = 'success';
+        } catch (\Exception $exception) {
+            $http_code = 500;
+            $message = $exception->getMessage();
+        }
+
+        return response()->json([
+            'status' => $http_code,
+            'message' => $message
+        ], $http_code);
+    }
+
+    public function postRegularEvent(Request $request)
+    {
+        try {
+            $validator = Validator::make($request->all(), [
+                'time' => 'required|string'
+            ]);
+            if ($validator->fails()) {
+                $http_code = 400;
+                return response()->json([
+                    'status' => $http_code,
+                    'message' => $validator->messages()
+                ], $http_code);
+            }
+
+            $time     = $request->get('time');
+            $event    = $request->get('event');
+            $weekdays = $request->get('weekdays');
+
+            $weekdayCollect = collect($weekdays);
+
+            $user_id   = Auth::id();
+            $sunday    = (int) $weekdayCollect->contains(0);
+            $monday    = (int) $weekdayCollect->contains(1);
+            $tuesday   = (int) $weekdayCollect->contains(2);
+            $wednesday = (int) $weekdayCollect->contains(3);
+            $thursday  = (int) $weekdayCollect->contains(4);
+            $friday    = (int) $weekdayCollect->contains(5);
+            $saturday  = (int) $weekdayCollect->contains(6);
+            $enabled   = 1;
+
+            $this->regularEventService->createRegularEvent(
+                $user_id,
+                $event,
+                Carbon::parse($time)->toTimeString(),
+                $sunday,
+                $monday,
+                $tuesday,
+                $wednesday,
+                $thursday,
+                $friday,
+                $saturday,
+                $enabled
+            );
 
             $http_code = 200;
             $message = 'success';

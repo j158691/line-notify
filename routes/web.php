@@ -25,6 +25,7 @@ Route::get('/', function () {
 Route::get('/register', function () {return view('register');});
 Route::get('/login', function () {return view('login');});
 Route::get('/memo', function () {return view('memo');})->middleware('auth');
+Route::get('/regular-event', function () {return view('regular_event');})->middleware('auth');
 #endregion
 
 #region register
@@ -40,6 +41,8 @@ Route::post('/logout', [AuthController::class, 'logout'])->middleware('auth');
 Route::post('/memo', [MemoController::class, 'postMemo'])->middleware('auth');
 Route::get('/memos', [MemoController::class, 'getMemos'])->middleware('auth');
 Route::delete('/memo', [MemoController::class, 'deleteMemo'])->middleware('auth');
+
+Route::post('/regular-event', [MemoController::class, 'postRegularEvent'])->middleware('auth');
 #endregion
 
 #region common
