@@ -66,9 +66,8 @@ class CronNotifyRegularEvent extends Command
         $this->userService         = $userService;
 
         $time = Carbon::now()->format('H:i:00');
-        $time = '12:17:00';
+
         $resultRegularEvent = $this->regularEventService->getNotifyRegularEvents($time);
-        dd($resultRegularEvent->toArray());
 
         $user_ids = $resultRegularEvent->pluck('user_id')->toArray();
 
