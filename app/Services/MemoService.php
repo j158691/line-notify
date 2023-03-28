@@ -54,6 +54,7 @@ class MemoService
             ->newModelQuery()
             ->where('notify_time', '>=', $notifyTimeStart)
             ->where('notify_time', '<=', $notifyTimeEnd)
+            ->whereNull('deleted_at')
             ->get();
     }
 
@@ -70,6 +71,7 @@ class MemoService
             ->newModelQuery()
             ->where('user_id', $userId)
             ->where('notify_time', '>=', $notifyTime)
+            ->whereNull('deleted_at')
             ->get();
     }
 
@@ -86,6 +88,7 @@ class MemoService
             ->newModelQuery()
             ->where('id', $memoId)
             ->where('user_id', $userId)
+            ->whereNull('deleted_at')
             ->first();
     }
 }

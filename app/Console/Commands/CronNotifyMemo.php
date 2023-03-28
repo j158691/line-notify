@@ -82,8 +82,8 @@ class CronNotifyMemo extends Command
             $line_notify = $user->line_notify;
 
             $this->lineNotifyService->postNotify($event, $line_notify);
-        });
 
-        Log::info('發送完畢'.Carbon::now()->toDateTimeString());
+            Log::info("使用者:{$user_id},發送完畢".Carbon::now()->toDateTimeString());
+        });
     }
 }

@@ -35,6 +35,9 @@
             </tbody>
         </table>
     </div>
+    <div class="logout">
+        <button type="submit" id="logout" style="width: 68px;">登出</button>
+    </div>
     <div class="dog"></div>
     <div class="meliodas"></div>
     <div class="kon"></div>

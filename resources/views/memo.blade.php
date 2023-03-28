@@ -49,10 +49,10 @@
 
         // 取得server time時間
         const serverTimeData = await getData("{{ env('APP_URL') }}/server-time");
-        let serverTime = new Date(serverTimeData.message).toTimeString();
+        let serverTime = new Date(serverTimeData.message).toLocaleString();
         let temp = new Date(serverTimeData.message);
-        let checkTime = new Date(temp.setHours(temp.getHours() + 1)).toTimeString();
-        let notifyTime = new Date(dateTimeElement.value).toTimeString();
+        let checkTime = new Date(temp.setHours(temp.getHours() + 1)).toLocaleString();
+        let notifyTime = new Date(dateTimeElement.value).toLocaleString();
         if (!(notifyTime >= checkTime)) {
             console.log(notifyTime);
             console.log(checkTime);
