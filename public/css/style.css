@@ -218,7 +218,6 @@ strong {
 table {
     width: 100%;
     border-collapse: collapse;
-    /*margin-top: 10px;*/
 }
 
 th,
@@ -230,6 +229,8 @@ td {
 
 th {
     background-color: #f2d3e0;
+    position: sticky;
+    top: 0;
 }
 
 tbody tr:nth-child(even) {
@@ -387,3 +388,31 @@ input[type="checkbox"]:checked + .checkbox-custom::after {
     font-size: 10px;
     color: #fff;
 }
+
+.btn-wrap {
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn-wrap button {
+    width: 68px;
+    margin-right: 5px;
+    margin-left: 5px;
+}
+
+.disable-btn {
+    background-color: #bb4242;
+}
+
+.disable-btn:hover {
+    background-color: rgba(194, 70, 70, 0.83);
+}
+
+.enable-btn {
+    background-color: #186c30;
+}
+
+.enable-btn:hover {
+    background-color: rgba(24, 108, 48, 0.77);
+}
+

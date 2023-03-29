@@ -43,6 +43,9 @@ Route::get('/memos', [MemoController::class, 'getMemos'])->middleware('auth');
 Route::delete('/memo', [MemoController::class, 'deleteMemo'])->middleware('auth');
 
 Route::post('/regular-event', [MemoController::class, 'postRegularEvent'])->middleware('auth');
+Route::get('/regular-events', [MemoController::class, 'getRegularEvents'])->middleware('auth');
+Route::delete('/regular-event', [MemoController::class, 'deleteRegularEvent'])->middleware('auth');
+Route::patch('/regular-event', [MemoController::class, 'patchRegularEvent'])->middleware('auth');
 #endregion
 
 #region common

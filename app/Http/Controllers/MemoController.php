@@ -87,7 +87,7 @@ class MemoController extends Controller
                     'event'       => $memo->event,
                     'notify_time' => $memo->notify_time,
                 ];
-            })->toArray();
+            })->values()->toArray();
 
             return view('memos', ['memos' => $memos]);
         } catch (\Exception $exception) {
@@ -179,6 +179,114 @@ class MemoController extends Controller
 
             $http_code = 200;
             $message = 'success';
+        } catch (\Exception $exception) {
+            $http_code = 500;
+            $message = $exception->getMessage();
+        }
+
+        return response()->json([
+            'status' => $http_code,
+            'message' => $message
+        ], $http_code);
+    }
+
+    public function getRegularEvents()
+    {
+        try {
+            $user_id = Auth::id();
+
+            // 取得定期事件
+            $resultRegularEvents = $this->regularEventService->getRegularEventsForRecord($user_id);
+            $regular_events = $resultRegularEvents->sortBy('time')->map(function ($regularEvent) {
+                return [
+                    'id'        => $regularEvent->id,
+                    'event'     => $regularEvent->event,
+                    'time'      => Carbon::parse($regularEvent->time)->format('H:i'),
+                    'sunday'    => $regularEvent->sunday,
+                    'monday'    => $regularEvent->monday,
+                    'tuesday'   => $regularEvent->tuesday,
+                    'wednesday' => $regularEvent->wednesday,
+                    'thursday'  => $regularEvent->thursday,
+                    'friday'    => $regularEvent->friday,
+                    'saturday'  => $regularEvent->saturday,
+                    'enabled'   => $regularEvent->enabled,
+                ];
+            })->values()->toArray();
+
+            return view('regular_events', ['regular_events' => $regular_events]);
+        } catch (\Exception $exception) {
+            $http_code = 500;
+            $message = $exception->getMessage();
+        }
+
+        return response()->json([
+            'status' => $http_code,
+            'message' => $message
+        ], $http_code);
+    }
+
+    public function deleteRegularEvent(Request $request)
+    {
+        try {
+            $regular_event_id = $request->get('regular_event_id');
+
+            $user_id = Auth::id();
+
+            // 確認是本人的才能刪
+            $resultRegularEvent = $this->regularEventService->getRegularEventForUser($regular_event_id, $user_id);
+            if (empty($resultRegularEvent)) {
+                return response()->json([
+                    'status' => 403,
+                    'message' => '不要刪別人的'
+                ], 403);
+            }
+
+            // 刪除
+            $resultRegularEvent->delete();
+
+            $http_code = 200;
+            $message = 'success';
+        } catch (\Exception $exception) {
+            $http_code = 500;
+            $message = $exception->getMessage();
+        }
+
+        return response()->json([
+            'status' => $http_code,
+            'message' => $message
+        ], $http_code);
+    }
+
+    public function patchRegularEvent(Request $request)
+    {
+        try {
+            $regular_event_id = $request->get('regular_event_id');
+
+            $user_id = Auth::id();
+
+            // 確認是本人的才能改
+            $resultRegularEvent = $this->regularEventService->getRegularEventForUser($regular_event_id, $user_id);
+            if (empty($resultRegularEvent)) {
+                return response()->json([
+                    'status' => 403,
+                    'message' => '不要改別人的'
+                ], 403);
+            }
+
+            // 更新
+            if ($resultRegularEvent->enabled == 1) {
+                $enabled = 0;
+                $message = '已停用';
+            } else {
+                $enabled = 1;
+                $message = '已啟用';
+            }
+
+            $resultRegularEvent->enabled = $enabled;
+            $resultRegularEvent->save();
+
+            $http_code = 200;
+            // $message = 'success';
         } catch (\Exception $exception) {
             $http_code = 500;
             $message = $exception->getMessage();

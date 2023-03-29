@@ -56,7 +56,8 @@ class RegularEventService
 
     public function getNotifyRegularEvents($time, $column)
     {
-        return $this->regularEvent->newModelQuery()
+        return $this->regularEvent
+            ->newModelQuery()
             ->where('time', $time)
             ->where($column, 1)
             // ->where(function ($subQuery) {
@@ -71,5 +72,24 @@ class RegularEventService
             ->where('enabled', 1)
             ->whereNull('deleted_at')
             ->get();
+    }
+
+    public function getRegularEventsForRecord($userId)
+    {
+        return $this->regularEvent
+            ->newModelQuery()
+            ->where('user_id', $userId)
+            ->whereNull('deleted_at')
+            ->get();
+    }
+
+    public function getRegularEventForUser($regularEventId, $userId)
+    {
+        return $this->regularEvent
+            ->newModelQuery()
+            ->where('id', $regularEventId)
+            ->where('user_id', $userId)
+            ->whereNull('deleted_at')
+            ->first();
     }
 }
