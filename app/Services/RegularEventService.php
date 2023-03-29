@@ -54,19 +54,20 @@ class RegularEventService
         return $this->regularEvent->newModelQuery()->create($create);
     }
 
-    public function getNotifyRegularEvents($time)
+    public function getNotifyRegularEvents($time, $column)
     {
         return $this->regularEvent->newModelQuery()
             ->where('time', $time)
-            ->where(function ($subQuery) {
-                $subQuery->where('sunday', 1)
-                    ->orWhere('monday', 1)
-                    ->orWhere('tuesday', 1)
-                    ->orWhere('wednesday', 1)
-                    ->orWhere('thursday', 1)
-                    ->orWhere('friday', 1)
-                    ->orWhere('saturday', 1);
-            })
+            ->where($column, 1)
+            // ->where(function ($subQuery) {
+            //     $subQuery->where('sunday', 1)
+            //         ->orWhere('monday', 1)
+            //         ->orWhere('tuesday', 1)
+            //         ->orWhere('wednesday', 1)
+            //         ->orWhere('thursday', 1)
+            //         ->orWhere('friday', 1)
+            //         ->orWhere('saturday', 1);
+            // })
             ->where('enabled', 1)
             ->whereNull('deleted_at')
             ->get();

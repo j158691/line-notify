@@ -8,6 +8,7 @@ use App\Services\UserService;
 use Illuminate\Console\Command;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Str;
 
 class CronNotifyRegularEvent extends Command
 {
@@ -65,9 +66,11 @@ class CronNotifyRegularEvent extends Command
         $this->lineNotifyService   = $lineNotifyService;
         $this->userService         = $userService;
 
-        $time = Carbon::now()->format('H:i:00');
+        $time     = Carbon::now()->format('H:i:00');
+        $day_name = Carbon::now()->dayName;
+        $column   = Str::lower($day_name);
 
-        $resultRegularEvent = $this->regularEventService->getNotifyRegularEvents($time);
+        $resultRegularEvent = $this->regularEventService->getNotifyRegularEvents($time, $column);
 
         $user_ids = $resultRegularEvent->pluck('user_id')->toArray();
 
