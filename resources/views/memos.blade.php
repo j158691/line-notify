@@ -47,6 +47,7 @@
 <script>
     const deleteButtons = document.querySelectorAll('.delete-btn');
     const token = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
+    const logoutElement = document.getElementById('logout');
 
     deleteButtons.forEach(btn => {
         btn.addEventListener("click", function (event) {
@@ -96,7 +97,31 @@
             referrer: 'no-referrer', // *client, no-referrer
         })
             .then(response => response.json()) // 輸出成 json
-    }
+    };
+
+    logoutElement.addEventListener("click", function () {
+        logoutElement.disabled = true;
+
+        params = {
+            _token: token
+        };
+
+        console.table(params);
+
+        postData('{{ env('APP_URL') }}/logout', params)
+            .then(data => {
+                console.log(data);
+                if (data.status === 200) {
+                    // swal("", "", "success");
+                    window.location.href = '{{ env('APP_URL') }}/login';
+                } else {
+                    swal("寶貝做不到qq", "", "error");
+                }
+
+                logoutElement.disabled = false;
+            })
+            .catch(error => {storeElement.disabled = false;})
+    });
 </script>
 </body>
 </html>
