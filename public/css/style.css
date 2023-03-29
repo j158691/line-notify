@@ -3,7 +3,8 @@
 }
 
 body {
-    background-color: #d5b5c133;
+    background-image: url("../image/ufos.png");
+    height: 90vh;
 }
 
 .container {
@@ -254,7 +255,7 @@ tbody tr:nth-child(even) {
     left: 0;
     bottom: 0;
     width: 180px;
-    background-color: rgba(230, 219, 242, 0.36);
+    background-color: rgb(58 51 96);
     padding: 20px;
     /*border-radius: 10px;*/
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.12);
@@ -263,6 +264,12 @@ tbody tr:nth-child(even) {
     justify-content: center;
     /*align-items: center;*/
     /*height: 100vh;*/
+}
+
+.sidebar-text {
+    text-align: center;
+    text-shadow: 2px 2px 2px #440a01;
+    color: #ff90b9;
 }
 
 .sidebar ul {
@@ -286,10 +293,11 @@ tbody tr:nth-child(even) {
     border-radius: 5px;
     transition: background-color 0.3s;
     text-decoration: none;
-    color: #333;
+    color: #ffdef0;
     font-weight: bold;
     font-size: 16px;
     margin-left: 8px; /* 右移10px */
+    text-shadow: 2px 2px 2px #542727;
 }
 
 .sidebar a:hover {
@@ -322,7 +330,7 @@ tbody tr:nth-child(even) {
     position: fixed;
     bottom: 0;
     right: 0;
-    transform: translate(-25%, -10%);
+    transform: translate(-30%, -50%);
 }
 
 .checkbox-group {
@@ -415,4 +423,3 @@ input[type="checkbox"]:checked + .checkbox-custom::after {
 .enable-btn:hover {
     background-color: rgba(24, 108, 48, 0.77);
 }
-
