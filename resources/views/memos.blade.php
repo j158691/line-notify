@@ -108,12 +108,12 @@
 
         console.table(params);
 
-        postData('{{ env('APP_URL') }}/logout', params)
+        postData("{{ env('APP_URL') }}/logout", params)
             .then(data => {
                 console.log(data);
                 if (data.status === 200) {
                     // swal("", "", "success");
-                    window.location.href = '{{ env('APP_URL') }}/login';
+                    window.location.href = "{{ env('APP_URL') }}/login";
                 } else {
                     swal("寶貝做不到qq", "", "error");
                 }
@@ -122,6 +122,24 @@
             })
             .catch(error => {storeElement.disabled = false;})
     });
+
+    const postData = (url, data) => {
+        // Default options are marked with *
+        return fetch(url, {
+            body: JSON.stringify(data), // must match 'Content-Type' header
+            cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+            credentials: 'same-origin', // include, same-origin, *omit
+            headers: {
+                'user-agent': 'Mozilla/4.0 MDN Example',
+                'content-type': 'application/json'
+            },
+            method: 'POST', // *GET, POST, PUT, DELETE, etc.
+            mode: 'cors', // no-cors, cors, *same-origin
+            redirect: 'follow', // manual, *follow, error
+            referrer: 'no-referrer', // *client, no-referrer
+        })
+            .then(response => response.json()) // 輸出成 json
+    };
 </script>
 </body>
 </html>
