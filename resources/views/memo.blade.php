@@ -51,10 +51,11 @@
         const serverTimeData = await getData("{{ env('APP_URL') }}/server-time");
         let serverTime = new Date(serverTimeData.message).toLocaleString();
         let temp = new Date(serverTimeData.message);
-        let checkTime = new Date(temp.setHours(temp.getHours() + 1)).toLocaleString();
+        let checkTime = new Date(temp.setHours(temp.getHours() + 1)).toISOString();
+        let checkNotifyTime = new Date(dateTimeElement.value).toISOString();
         let notifyTime = new Date(dateTimeElement.value).toLocaleString();
-        if (!(notifyTime >= checkTime)) {
-            console.log(notifyTime);
+        if (!(checkNotifyTime >= checkTime)) {
+            console.log(checkNotifyTime);
             console.log(checkTime);
             swal("時間設定錯誤", "當前伺服器時間為" + serverTime + "\n你設定的時間為" + notifyTime + "\n需選擇伺服器時間加一小時以後的時間，辛苦我惹ˊˋ", "warning");
             storeElement.disabled = false;

@@ -28,7 +28,7 @@ class CommonController extends Controller
     public function getServerTime(Request $request)
     {
         try {
-            $server_time = Carbon::now()->toDateTimeString();
+            $server_time = Carbon::now()->toISOString();
 
             $http_code = 200;
             $message = $server_time;
