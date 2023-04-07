@@ -10,7 +10,7 @@
 <body>
 @include('side_bar')
 @yield('sidebar')
-<div class="container">
+<div class="container" style="margin-left: 110px">
     <img class="bondee" src="{{ asset('image/bondee.png') }}">
     <h1>Regular</h1>
     <strong class="neon">寶貝會定期跟你講</strong>

@@ -5,6 +5,8 @@
 body {
     background-image: url("../image/ufos.png");
     height: 90vh;
+    overflow-x: hidden;
+    overflow-y: hidden;
 }
 
 .container {
@@ -51,6 +53,18 @@ input[type="time"]
     border-radius: 5px;
     border: none;
     background-color: #d8d8d8;
+}
+
+@media (max-width: 767px) {
+    input[type="datetime-local"] {
+        /* 手機設備樣式 */
+        width: 96%;
+        padding: 10px;
+        margin-bottom: 20px;
+        border-radius: 5px;
+        border: none;
+        background-color: #d8d8d8;
+    }
 }
 
 button[type="submit"],
@@ -423,4 +437,8 @@ input[type="checkbox"]:checked + .checkbox-custom::after {
 
 .enable-btn:hover {
     background-color: rgba(24, 108, 48, 0.77);
+}
+
+.sidebar-wrapper {
+    transform: translateY(-50%);
 }
