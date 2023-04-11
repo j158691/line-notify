@@ -65,8 +65,8 @@ class CronNotifyMemo extends Command
         $this->lineNotifyService = $lineNotifyService;
         $this->userService = $userService;
 
-        $notify_time_start = Carbon::now()->addHour()->startOfMinute()->toDateTimeString();
-        $notify_time_end = Carbon::now()->addHour()->endOfMinute()->toDateTimeString();
+        $notify_time_start = Carbon::now()->startOfMinute()->toDateTimeString();
+        $notify_time_end = Carbon::now()->endOfMinute()->toDateTimeString();
 
         // $resultMemos = $this->memoService->getNotifyMemos('2023-03-13 00:00:00', '2023-03-14 19:19:59');
         $resultMemos = $this->memoService->getNotifyMemos($notify_time_start, $notify_time_end);

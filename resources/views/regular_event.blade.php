@@ -13,7 +13,7 @@
 <div class="container" style="margin-left: 110px">
     <img class="bondee" src="{{ asset('image/bondee.png') }}">
     <h1>Regular</h1>
-    <strong class="neon">寶貝會定期跟你講</strong>
+    <strong class="neon">沒有寶貝怎麼行 只有寶貝不會停</strong>
     <div class="form">
         @csrf
         <label for="event">事件</label>

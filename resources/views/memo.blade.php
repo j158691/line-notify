@@ -13,7 +13,7 @@
 <div class="container" style="margin-left: 110px">
     <img class="bondee" src="{{ asset('image/bondee.png') }}">
     <h1>Memo</h1>
-    <strong class="neon">寶貝會提前一小時跟你講</strong>
+    <strong class="neon">寶貝會照設定的時間跟你講</strong>
     <div class="form">
         @csrf
         <label for="event">事件</label>
@@ -51,13 +51,13 @@
         const serverTimeData = await getData("{{ env('APP_URL') }}/server-time");
         let serverTime = new Date(serverTimeData.message).toLocaleString();
         let temp = new Date(serverTimeData.message);
-        let checkTime = new Date(temp.setHours(temp.getHours() + 1)).toISOString();
+        let checkTime = new Date(temp.setHours(temp.getHours())).toISOString();
         let checkNotifyTime = new Date(dateTimeElement.value).toISOString();
         let notifyTime = new Date(dateTimeElement.value).toLocaleString();
         if (!(checkNotifyTime >= checkTime)) {
             console.log(checkNotifyTime);
             console.log(checkTime);
-            swal("時間設定錯誤", "當前伺服器時間為" + serverTime + "\n你設定的時間為" + notifyTime + "\n需選擇伺服器時間加一小時以後的時間，辛苦我惹ˊˋ", "warning");
+            swal("時間設定錯誤", "當前伺服器時間為" + serverTime + "\n你設定的時間為" + notifyTime + "\n需選擇伺服器時間以後的時間，辛苦我惹ˊˋ", "warning");
             storeElement.disabled = false;
             return;
         }
