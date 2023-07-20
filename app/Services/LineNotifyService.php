@@ -16,6 +16,12 @@ class LineNotifyService
         '/image/sausage.png',
         '/image/maltese.png',
         '/image/grey_dog.png',
+
+        '/image/apple.png',
+        '/image/bird.png',
+        '/image/elephant.png',
+        '/image/king.png',
+        '/image/panda.png',
     ];
 
     /**
@@ -118,7 +124,8 @@ class LineNotifyService
     public function postNotify($message, $accessToken)
     {
         $dog_images = self::dogImageEnum;
-        $dog_image = Arr::get($dog_images, mt_rand(0, 5), '');
+        $count = count($dog_images) - 1;
+        $dog_image = Arr::get($dog_images, mt_rand(0, $count), '');
 
         $method  = 'POST';
         $uri     = 'https://notify-api.line.me/api/notify';
